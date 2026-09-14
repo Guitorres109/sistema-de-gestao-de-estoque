@@ -37,8 +37,29 @@ const Produto = {
   //Procurar cliente por ID
   async findById(id) {
     await ready;
-    return formatar(get('SELECT * FROM produtos WHERE id = ?', [id]));
+
+    const row = get(
+      "SELECT * FROM produtos WHERE id = ?",
+      [id],
+    );
+
+    if (!row) {
+      return null;
+    }
+
+    return {
+      _id: row.id,
+      id: row.id,
+      nome: row.nome,
+      descricao: row.descricao,
+      estoque: row.estoque,
+      estoque_min: row.estoque_min,
+      disponivel: row.disponivel,
+      createdAt: row.created_at,
+      updatedAt: row.updated_at,
+    };
   },
+
 
   //Criar novo cliente
   async create({ nome, descricao, estoque, estoque_min }) {

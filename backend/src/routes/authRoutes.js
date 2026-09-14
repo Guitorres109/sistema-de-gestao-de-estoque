@@ -2,6 +2,7 @@ import auth from "../middlewares/auth.js";
 import jwt from "jsonwebtoken";
 import express from "express";
 const authRoute   = express.Router();
+import Usuario from "../models/usuario.js";
 import logger, { logInfo, logWarn, logError, logDebug } from "../utils/logger.js";
 
 authRoute.post('/login', async (req, res) => {

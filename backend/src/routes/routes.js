@@ -56,9 +56,8 @@ router.get('/produtos/:id', auth, async (req, res) => {
 //Rota para criar pizzas
 //====================================
 
-router.post('/produtos', auth, async (req, res) => {
+router.post('/produtos', auth,  async (req, res) => {
   try {
-    req.body.usuario_id = req.usuario.id
     res.status(201).json(await Produto.create(req.body));
   } catch (e) { 
     res.status(500).json("Erro ao criar produto"); 
@@ -71,7 +70,7 @@ router.post('/produtos', auth, async (req, res) => {
 //Rota para atualizar cadastro de pizzas
 //====================================
 
-router.put('/produtos/:id', auth, async (req, res) => {
+router.put('/produtos/:id', auth,  async (req, res) => {
   try {
     req.body.usuario_id = req.usuario.id
     const p = await Produto.update(req.params.id, req.body);
@@ -96,6 +95,78 @@ router.delete('/produtos/:id', auth, async (req, res) => {
   } catch (e) { 
     res.status(500).json("Erro ao deletar produto"); 
     logError("Erro ao deletar produto")
+    console.error(e) 
+   }
+});
+
+router.get('/saidas', auth, async (req, res) => {
+  try { res.json(await Saida.findAll()); }
+  catch (e) { res.status(500).json("Erro ao fornecer saidas"); 
+    logError("Erro ao fornecer saidas")
+    console.error(e)
+}
+});
+
+//====================================
+//Rota para obter pizzas por ID
+//====================================
+
+router.get('/saidas/:id', auth, async (req, res) => {
+  try {
+    const p = await Saida.findById(req.params.id);
+    if (!p) return res.status(404).json({ erro: 'Produto não encontrado' });
+    res.json(p);
+  } catch (e) { 
+    res.status(500).json("Erro ao fornecer saidas"); 
+    logError("Erro ao fornecer saidas")
+    console.error(e)
+}
+});
+
+//====================================
+//Rota para criar pizzas
+//====================================
+
+router.post('/saidas', auth,  async (req, res) => {
+  try {
+    req.body.usuario_id = req.usuario.id
+    res.status(201).json(await Saida.create(req.body));
+  } catch (e) { 
+    res.status(500).json("Erro ao adicionar saida"); 
+    logError("Erro ao adicionar saida")
+    console.error(e) 
+}
+});
+
+//====================================
+//Rota para atualizar cadastro de pizzas
+//====================================
+
+router.put('/saidas/:id', auth,  async (req, res) => {
+  try {
+    req.body.usuario_id = req.usuario.id
+    const p = await Saida.update(req.params.id, req.body);
+    if (!p) return res.status(404).json({ erro: 'Saida não encontrada' });
+    res.json(p);
+  } catch (e) {
+    res.status(500).json("Erro ao atualizar saida"); 
+    logError("Erro ao atualizar saida")
+    console.error(e) 
+   }
+});
+
+//====================================
+//Rota para deletar dados de pizzas
+//====================================
+
+router.delete('/saidas/:id', auth, async (req, res) => {
+  try {
+    const ok = await Saida.delete(req.params.id);
+    if (!ok) return res.status(404).json({ erro: 'Saida não encontrada' });
+    res.json({ mensagem: 'Saida Deletada' });
+  } catch (e) { 
+    res.status(500).json("Erro ao deletar saida"); 
+    logError("Erro ao deletar saida")
     console.error(e) 
    }
 });
