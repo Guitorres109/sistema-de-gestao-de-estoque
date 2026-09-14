@@ -1,5 +1,6 @@
-const express  = require('express');
-const jwt      = require('jsonwebtoken');
+import auth from "../middlewares/auth.js";
+import jwt from "jsonwebtoken";
+import express from "express";
 const authRoute   = express.Router();
 import logger, { logInfo, logWarn, logError, logDebug } from "../utils/logger.js";
 
@@ -27,4 +28,4 @@ authRoute.post('/login', async (req, res) => {
   } catch (e) { res.status(500).json({ erro: e.message }); }
 });
 
-module.exports = authRoute
+export default authRoute;

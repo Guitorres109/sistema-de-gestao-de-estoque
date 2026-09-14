@@ -56,6 +56,7 @@ const ready = (async () => {
     CREATE TABLE IF NOT EXISTS saidas (
       id              INTEGER PRIMARY KEY AUTOINCREMENT,
       numero_saida    INTEGER,
+      itens_saida     TEXT NOT NULL DEFAULT "{}",
       usuario_id      INTEGER NOT NULL REFERENCES usuarios(id),
       observacoes     TEXT    NOT NULL DEFAULT '',
       created_at      TEXT    NOT NULL DEFAULT (datetime('now')),

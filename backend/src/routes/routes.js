@@ -1,16 +1,15 @@
 //====================================
 //Rotas basicas para obter dados
 //====================================
-const router   = express.Router();
-const auth     = require('../middlewares/auth');
+import auth from "../middlewares/auth.js";
 import express from "express";
-const Usuario  = require('../models/Usuario');
-const Pizza    = require('../models/Pizza');
-const Cliente  = require('../models/Cliente');
-const Pedido   = require('../models/Pedido');
+import Usuario from "../models/usuario.js";
+import Produto from "../models/produto.js";
+import Saida from "../models/saidas.js";
 import { obterLogs } from "../services/logService.js";
 import { limiter } from "../utils/limiters.js";
 import logger, { logInfo, logWarn, logError, logDebug } from "../utils/logger.js";
+const router   = express.Router();
 
 
 router.get("/logs", auth, limiter, async (req, res) => {
@@ -30,8 +29,11 @@ router.get("/logs", auth, limiter, async (req, res) => {
 });
 
 router.get('/produtos', auth, async (req, res) => {
-  try { res.json(await Produtos.findAll()); }
-  catch (e) { res.status(500).json({ erro: e.message }); }
+  try { res.json(await Produto.findAll()); }
+  catch (e) { res.status(500).json("Erro ao fornecer produtos"); 
+    logError("Erro ao fornecer produtos")
+    console.error(e)
+}
 });
 
 //====================================
@@ -40,10 +42,14 @@ router.get('/produtos', auth, async (req, res) => {
 
 router.get('/produtos/:id', auth, async (req, res) => {
   try {
-    const p = await Pizza.findById(req.params.id);
-    if (!p) return res.status(404).json({ erro: 'Pizza não encontrada' });
+    const p = await Produto.findById(req.params.id);
+    if (!p) return res.status(404).json({ erro: 'Produto não encontrado' });
     res.json(p);
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+  } catch (e) { 
+    res.status(500).json("Erro ao fornecer produtos"); 
+    logError("Erro ao fornecer produtos")
+    console.error(e)
+}
 });
 
 //====================================
@@ -52,10 +58,13 @@ router.get('/produtos/:id', auth, async (req, res) => {
 
 router.post('/produtos', auth, async (req, res) => {
   try {
-    if (!req.body.nome || !req.body.ingredientes)
-      return res.status(400).json({ erro: 'Nome e ingredientes são obrigatórios' });
-    res.status(201).json(await Pizza.create(req.body));
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+    req.body.usuario_id = req.usuario.id
+    res.status(201).json(await Produto.create(req.body));
+  } catch (e) { 
+    res.status(500).json("Erro ao criar produto"); 
+    logError("Erro ao criar produto")
+    console.error(e) 
+}
 });
 
 //====================================
@@ -64,10 +73,15 @@ router.post('/produtos', auth, async (req, res) => {
 
 router.put('/produtos/:id', auth, async (req, res) => {
   try {
-    const p = await Pizza.update(req.params.id, req.body);
-    if (!p) return res.status(404).json({ erro: 'Pizza não encontrada' });
+    req.body.usuario_id = req.usuario.id
+    const p = await Produto.update(req.params.id, req.body);
+    if (!p) return res.status(404).json({ erro: 'Produto não encontrado' });
     res.json(p);
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+  } catch (e) {
+    res.status(500).json("Erro ao atualizar produto"); 
+    logError("Erro ao atualizar produto")
+    console.error(e) 
+   }
 });
 
 //====================================
@@ -76,10 +90,14 @@ router.put('/produtos/:id', auth, async (req, res) => {
 
 router.delete('/produtos/:id', auth, async (req, res) => {
   try {
-    const ok = await Pizza.delete(req.params.id);
-    if (!ok) return res.status(404).json({ erro: 'Pizza não encontrada' });
-    res.json({ mensagem: 'Pizza deletada' });
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+    const ok = await Produto.delete(req.params.id);
+    if (!ok) return res.status(404).json({ erro: 'Produto não encontrado' });
+    res.json({ mensagem: 'Produto Deletado' });
+  } catch (e) { 
+    res.status(500).json("Erro ao deletar produto"); 
+    logError("Erro ao deletar produto")
+    console.error(e) 
+   }
 });
 
 //====================================
@@ -140,4 +158,4 @@ router.delete('/usuarios/:id', auth, async (req, res) => {
   } catch (e) { res.status(500).json({ erro: e.message }); }
 });
 
-module.exports = router;
+export default router;

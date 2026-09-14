@@ -7,8 +7,10 @@ import helmet from "helmet";
 import pinoHttp from "pino-http";
 import logger from "./src/utils/logger.js";
 import routes from "./src/routes/routes.js";
-import authRoutes from "./src/routes/authRoutes.js";
+import authRoute from "./src/routes/authRoutes.js";
+import database from "./src/database/sqlite.js";
 
+const { ready } = database;
 console.clear();
 
 const app = express();
@@ -91,15 +93,7 @@ ready
     });
 
     app.use("/api", routes);
-    app.use("/api/auth", authRoutes);
-
-    // ==================================================
-    // IMAGENS
-    // ==================================================
-
-    const uploadsPath = path.join(__dirname, "uploads");
-
-    app.use("/api/imagens", express.static(uploadsPath));
+    app.use("/api/auth", authRoute);
 
     // ==================================================
     // INICIAR SERVIDOR

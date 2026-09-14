@@ -1,6 +1,6 @@
-const jwt = require('jsonwebtoken');
+import jwt from "jsonwebtoken";
 
-function autenticar(req, res, next) {
+function auth(req, res, next) {
   const authHeader = req.headers['authorization'];
   //Criar token de verificação para o usuario ao fazer login
   const token      = authHeader && authHeader.split(' ')[1];
@@ -19,4 +19,4 @@ function autenticar(req, res, next) {
   }
 }
 
-module.exports = autenticar;
+export default auth

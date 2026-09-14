@@ -51,7 +51,7 @@ const Produto = {
   },
 
   //Atualizar cadastro de cliente
-  async update(id, { nome, descricao, estoque, estoque_min, disponivel }) {
+  async update(id, { nome, descricao, estoque, estoque_min}) {
     await ready;
     const atual = get('SELECT * FROM produtos WHERE id = ?', [id]);
     if (!atual) return null;
