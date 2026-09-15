@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Painel · Controle de Estoque</title>
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/base.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/variaveis.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/login.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/layout.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/dashboard.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/components.css" />
+
+
+</head>
+<body>
+<div class="night-backdrop"></div>
+
+<div class="app-shell">
+
+  <aside class="sidebar">
+    <div class="brand">
+      <span class="brand-mark">Estoque</span>
+      <span class="brand-sub">PAINEL DE CONTROLE</span>
+    </div>
+
+    <nav>
+      <ul class="nav-list">
+        <li>
+          <button class="nav-link" data-secao="produtos">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M21 8 12 3 3 8v8l9 5 9-5V8Z"/><path d="M3 8l9 5 9-5"/><path d="M12 13v8"/></svg>
+            Produtos
+          </button>
+        </li>
+        <li>
+          <button class="nav-link" data-secao="saidas">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12h12"/><path d="M12 6l6 6-6 6"/><path d="M20 5v14"/></svg>
+            Saídas de estoque
+          </button>
+        </li>
+        <li data-admin-only hidden>
+          <button class="nav-link" data-secao="usuarios">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><path d="M16 6.5c1.6.4 2.8 1.9 2.8 3.6 0 1.7-1.2 3.2-2.8 3.6"/><path d="M21 20c0-2.7-1.8-5-4.3-5.7"/></svg>
+            Usuários
+          </button>
+        </li>
+        <li data-admin-only hidden>
+          <button class="nav-link" data-secao="logs">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="3" width="16" height="18" rx="0.5"/><path d="M8 8h8"/><path d="M8 12h8"/><path d="M8 16h5"/></svg>
+            Logs
+          </button>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="nav-link" id="btn-logout">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="M16 17l5-5-5-5"/><path d="M21 12H9"/></svg>
+        Sair
+      </button>
+    </div>
+  </aside>
+
+  <div>
+    <header class="topbar">
+      <button class="btn btn-ghost btn-icon" id="btn-toggle-sidebar" style="display:none;">☰</button>
+      <div class="topbar-title">
+        <h1>Painel</h1>
+        <p>Visão geral do estoque e da equipe</p>
+      </div>
+      <div class="user-chip">
+        <div class="user-chip-name">
+          <strong id="user-nome">—</strong>
+          <span class="badge" id="user-perfil">—</span>
+        </div>
+        <div class="user-avatar" id="user-avatar">—</div>
+      </div>
+    </header>
+
+    <main class="content">
+      <section class="content-section" data-secao="produtos" hidden></section>
+      <section class="content-section" data-secao="saidas" hidden></section>
+      <section class="content-section" data-secao="usuarios" hidden></section>
+      <section class="content-section" data-secao="logs" hidden></section>
+    </main>
+  </div>
+
+</div>
+
+<script type="module" src="js/dashboard.js"></script>
+</body>
+</html>

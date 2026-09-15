@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  color-scheme: dark;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--night-900);
+  color: var(--ink-100);
+  min-height: 100vh;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Fundo com as "vidraças" verticais da imagem de referência, bem sutis */
+.night-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(ellipse 60% 45% at 80% 8%, var(--blue-glow), transparent 60%),
+    radial-gradient(ellipse 40% 30% at 12% 95%, var(--lime-glow), transparent 65%),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0,
+      transparent 78px,
+      rgba(76, 107, 255, 0.05) 78px,
+      rgba(76, 107, 255, 0.05) 80px
+    ),
+    var(--night-900);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  color: var(--ink-100);
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+input, select, textarea {
+  font-family: inherit;
+}
+
+::selection {
+  background: var(--lime-neon);
+  color: var(--night-950);
+}
+
+/* Scrollbar discreta, no tom da paleta */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--night-900);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--night-600);
+  border: 2px solid var(--night-900);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-neon);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

@@ -1,0 +1,57 @@
+/*
+  DESIGN TOKENS
+  Paleta inspirada em bar noturno art déco: azul profundo da noite,
+  vidro âmbar da bebida e o amarelo-limão neon da casca de limão/luz de janela.
+*/
+
+:root {
+  /* --- Cor base --- */
+  --night-950: #05061a;   /* fundo mais profundo */
+  --night-900: #0b0e2e;   /* fundo principal */
+  --night-800: #12163f;   /* painéis */
+  --night-700: #1b2154;   /* painéis elevados / hover */
+  --night-600: #2a3170;   /* bordas e divisores */
+
+  --blue-neon: #4c6bff;   /* vidraças / linhas de destaque */
+  --blue-neon-soft: rgba(76, 107, 255, 0.35);
+  --blue-glow: rgba(76, 107, 255, 0.18);
+
+  --lime-neon: #d9ff4b;   /* casca de limão — cor de ação/destaque */
+  --lime-neon-dim: #a7c93a;
+  --lime-glow: rgba(217, 255, 75, 0.25);
+
+  --amber: #e0943a;       /* bebida âmbar — avisos e estados de atenção */
+  --amber-glow: rgba(224, 148, 58, 0.25);
+
+  --danger: #ff5d6c;
+  --danger-glow: rgba(255, 93, 108, 0.2);
+
+  --ink-100: #f1f3ff;     /* texto principal sobre fundo escuro */
+  --ink-300: #b9c0ea;     /* texto secundário */
+  --ink-500: #7c85b8;     /* texto terciário / placeholders */
+
+  /* --- Tipografia --- */
+  --font-display: 'Cinzel', serif;
+  --font-body: 'Space Grotesk', sans-serif;
+
+  /* --- Espaçamento --- */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+
+  /* --- Bordas / formas ---
+     Sem raio de borda: o vocabulário aqui é linha reta e canto cortado,
+     como as vidraças e arcos da cena. */
+  --line: 1px solid var(--night-600);
+  --line-neon: 1px solid var(--blue-neon-soft);
+  --cut: 10px; /* tamanho do corte de canto (clip-path) */
+
+  --shadow-panel: 0 24px 60px rgba(0, 0, 0, 0.45);
+
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}

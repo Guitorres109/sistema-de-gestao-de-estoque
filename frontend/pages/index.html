@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Entrar · Controle de Estoque</title>
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/base.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/variaveis.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/components.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/login.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/layout.css" />
+<link rel="stylesheet" href="/sistema-de-gestao-de-estoque/frontend/style/dashboard.css" />
+</head>
+<body>
+ 
+<div class="night-backdrop"></div>
+
+<div class="login-shell">
+
+  <!-- Lado da cena: arcos e skyline em SVG, no clima noturno da referência -->
+  <section class="login-scene" aria-hidden="true">
+    <svg viewBox="0 0 800 900" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <linearGradient id="skyFade" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#161b4a" />
+          <stop offset="100%" stop-color="#05061a" />
+        </linearGradient>
+      </defs>
+      <rect x="0" y="0" width="800" height="900" fill="url(#skyFade)" />
+
+      <!-- arcos concêntricos, motivo art déco -->
+      <g stroke="#4c6bff" stroke-opacity="0.35" fill="none" stroke-width="2">
+        <path d="M -50 420 A 450 450 0 0 1 850 420" />
+        <path d="M 10 460 A 390 390 0 0 1 790 460" />
+        <path d="M 70 500 A 330 330 0 0 1 730 500" />
+        <path d="M 130 540 A 270 270 0 0 1 670 540" />
+      </g>
+      <g stroke="#d9ff4b" stroke-opacity="0.5" fill="none" stroke-width="1.5">
+        <path d="M -20 440 A 420 420 0 0 1 820 440" />
+        <path d="M 100 520 A 300 300 0 0 1 700 520" />
+      </g>
+
+      <!-- skyline -->
+      <g fill="#0e1236">
+        <rect x="40" y="600" width="60" height="300" />
+        <rect x="110" y="540" width="45" height="360" />
+        <rect x="165" y="640" width="70" height="260" />
+        <rect x="600" y="580" width="55" height="320" />
+        <rect x="660" y="500" width="50" height="400" />
+        <rect x="715" y="620" width="65" height="280" />
+      </g>
+      <g stroke="#4c6bff" stroke-opacity="0.6" stroke-width="1">
+        <line x1="70" y1="600" x2="70" y2="900" />
+        <line x1="132" y1="540" x2="132" y2="900" />
+        <line x1="627" y1="580" x2="627" y2="900" />
+        <line x1="685" y1="500" x2="685" y2="900" />
+      </g>
+    </svg>
+
+    <div class="login-scene-copy">
+      <p class="eyebrow">Painel administrativo</p>
+      <h2>Estoque sob controle, do jeito certo.</h2>
+      <p>Acompanhe produtos, registre saídas e gerencie sua equipe em um único painel.</p>
+    </div>
+  </section>
+
+  <!-- Lado do formulário -->
+  <section class="login-form-side">
+    <div class="login-card panel">
+      <h1>Bem-vindo de volta</h1>
+      <p class="lede">Entre com suas credenciais para acessar o painel.</p>
+
+      <div class="login-alert" id="login-alerta" role="alert"></div>
+
+      <form id="form-login" novalidate>
+        <div class="field">
+          <label for="email">E-mail</label>
+          <input id="email" name="email" type="email" autocomplete="username" required />
+        </div>
+        <div class="field">
+          <label for="senha">Senha</label>
+          <input id="senha" name="senha" type="password" autocomplete="current-password" required />
+        </div>
+        <button type="submit" class="btn btn-primary login-submit">Entrar</button>
+      </form>
+    </div>
+  </section>
+
+</div>
+
+<script src="js/script.js"></script>
+</body>
+</html>
