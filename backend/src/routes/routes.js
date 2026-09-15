@@ -180,7 +180,11 @@ router.get('/usuarios', auth, async (req, res) => {
     if (req.usuario.perfil !== 'Administrador')
       return res.status(403).json({ erro: 'Acesso restrito a Administradores' });
     res.json(await Usuario.findAll());
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+  } catch (e) { 
+    res.status(500).json("Erro ao fornecer usuarios"); 
+    logError("Erro ao fornecer usuarios")
+    console.error(e) 
+   }
 });
 
 //====================================
@@ -197,7 +201,9 @@ router.post('/usuarios', auth, async (req, res) => {
     res.status(201).json(await Usuario.create({ nome, email, senha, perfil }));
   } catch (e) {
     if (e.message?.includes('UNIQUE')) return res.status(400).json({ erro: 'E-mail já cadastrado' });
-    res.status(500).json({ erro: e.message });
+    res.status(500).json("Erro ao criar usuarios"); 
+    logError("Erro ao criar usuarios")
+    console.error(e) ;
   }
 });
 
@@ -212,7 +218,11 @@ router.put('/usuarios/:id', auth, async (req, res) => {
     const u = await Usuario.update(req.params.id, req.body);
     if (!u) return res.status(404).json({ erro: 'Usuário não encontrado' });
     res.json(u);
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+  } catch (e) { 
+    res.status(500).json("Erro ao atualizar usuarios"); 
+    logError("Erro ao atualizar usuarios")
+    console.error(e) ;
+  }
 });
 
 //====================================
@@ -226,7 +236,11 @@ router.delete('/usuarios/:id', auth, async (req, res) => {
     const ok = await Usuario.delete(req.params.id);
     if (!ok) return res.status(404).json({ erro: 'Usuário não encontrado' });
     res.json({ mensagem: 'Usuário deletado' });
-  } catch (e) { res.status(500).json({ erro: e.message }); }
+  } catch (e) { 
+    res.status(500).json("Erro ao deletar usuarios"); 
+    logError("Erro ao deletar usuarios")
+    console.error(e) ;
+   }
 });
 
 export default router;
